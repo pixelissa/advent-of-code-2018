@@ -1,12 +1,12 @@
-const boxes = require("fs")
-    .readFileSync("./input.txt")
-    .toString()
-    .split("\n");
+//const input = require("fs").readFileSync("./input.txt");
 
-function checksum () {
+const checksum = (input) => {
+    let boxes = input
+        .toString()
+        .split("\n");
     let doublesCounter = 0;
     let triplesCounter = 0;
-
+    
     boxes.forEach((box) => {    
         let letters = {};
         let currentBoxChars = box.split("");
@@ -26,10 +26,11 @@ function checksum () {
         }    
     });
 
-    console.log(doublesCounter * triplesCounter);
     return doublesCounter * triplesCounter;   
-}
+};
 
-checksum();
+//console.log(checksum(input));
+
+module.exports = checksum;
 
 

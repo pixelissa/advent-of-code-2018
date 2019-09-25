@@ -1,9 +1,10 @@
-const boxes = require("fs")
-    .readFileSync("./input.txt")
-    .toString()
-    .split("\n");
+//const input = require("fs").readFileSync("./input.txt");
 
-function checksumTwo() {
+const checksumTwo = (input) => {
+    let boxes = input
+        .toString()
+        .split("\n");
+
     for (let i = 0; i < boxes.length; i++) {
         for (let j = 0; j < boxes.length; j++) {
             if (checkDifference(boxes[i], boxes[j]) === 1) {
@@ -11,9 +12,9 @@ function checksumTwo() {
             }
         }
     }
-}
+};
 
-function checkDifference(firstBox, secondBox) {
+const checkDifference = (firstBox, secondBox) => {
     let differences = 0;
 
     for (let i = 0; i < firstBox.length; i++) {
@@ -23,9 +24,9 @@ function checkDifference(firstBox, secondBox) {
     }
 
     return differences;    
-}
+};
 
-function getCommonLetters(firstBox, secondBox) {
+const getCommonLetters = (firstBox, secondBox) => {
     return firstBox
         .split("")
         .filter((char) => {
@@ -33,6 +34,8 @@ function getCommonLetters(firstBox, secondBox) {
                 .split("")
                 .indexOf(char) > -1;
     });
-}
+};
 
-checksumTwo();
+//console.log(checksumTwo(input));
+
+module.exports = checksumTwo;
