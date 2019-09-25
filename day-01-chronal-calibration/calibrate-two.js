@@ -23,7 +23,7 @@ const calibrateDuplicates = (input) => {
 
         currentFreq += input[i];
     }   
-}
+};
 
 //console.log(calibrateDuplicates(input));
 
