@@ -36,7 +36,7 @@ const strategyOne = (input) => {
         }
     });
 
-    return parseInt(mostOftenAsleep.id) * mostOftenAsleep.getMinuteMostAsleep();  
+    return parseInt(mostOftenAsleep.id) * parseInt(mostOftenAsleep.getMinuteMostAsleep()); 
 };
 
 console.log(strategyOne(input));

@@ -17,7 +17,7 @@ const Guard = class {
 
     getMinuteMostAsleep() {
         let minutesToSort = this.minutesAsleep;
-        let sortedMinutes = [];
+        const sortedMinutes = [];
         for (let minute in minutesToSort) {
             sortedMinutes.push([minute, minutesToSort[minute]]);
         }
@@ -26,7 +26,7 @@ const Guard = class {
             return min2[1] - min1[1];
         });
     
-        return parseInt(sortedMinutes[0]);
+        return sortedMinutes[0] !== undefined ? sortedMinutes[0] : 0;
     }
 };
 
