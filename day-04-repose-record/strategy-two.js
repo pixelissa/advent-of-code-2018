@@ -4,7 +4,7 @@ const parseTimestamp = require("./parse-timestamp.js");
 
 const strategyTwo = (input) => {
     let timestamps = input.toString().split("\n").sort();
-    const guards = {};
+    const guardsMap = {};
     let currentGuard;
     let sleepStart;
     let sleepEnd;
@@ -13,11 +13,11 @@ const strategyTwo = (input) => {
         let entry = parseTimestamp(t);
 
         if (entry.action === "guard") {        
-            if (!guards.hasOwnProperty(entry.id)) {
-                guards[entry.id] = new guard(entry.id);
+            if (!guardsMap.hasOwnProperty(entry.id)) {
+                guardsMap[entry.id] = new guard(entry.id);
             }
             
-            currentGuard = guards[entry.id];
+            currentGuard = guardsMap[entry.id];
         }    
         else if (entry.action === "falls") {
             sleepStart = entry.minute;
@@ -32,8 +32,9 @@ const strategyTwo = (input) => {
     });
 
     const mostAsleepMinutes = [];
-    for (const guard in guards) {
-        mostAsleepMinutes.push([guards[guard].id, guards[guard].getMinuteMostAsleep()]);
+    for (const key in guardsMap) {
+        const guard = guardsMap[key];
+        mostAsleepMinutes.push([guard.id, guard.getMinuteMostAsleep()]);
     }
 
     mostAsleepMinutes.sort((min1, min2) => {
