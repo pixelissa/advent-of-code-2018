@@ -1,5 +1,6 @@
 const input = require("fs").readFileSync("./input.txt");
 const guard = require("./Guard.js");
+const parseTimestamp = require("./parse-timestamp.js");
 
 const strategyOne = (input) => {
     let timestamps = input.toString().split("\n").sort();
@@ -36,16 +37,6 @@ const strategyOne = (input) => {
     });
 
     return parseInt(mostOftenAsleep.id) * mostOftenAsleep.getMinuteMostAsleep();  
-};
-
-const parseTimestamp = (t) => {
-    let groups = t.match(/\[\d+\-\d+\-\d+\s\d+:(\d+)\]\s([A-Z]+)\s#*(\d*)/i);
-   
-    return {
-        action: groups[2].toLowerCase(),
-        minute: parseInt(groups[1]),
-        id: groups[3]        
-    }
 };
 
 console.log(strategyOne(input));
