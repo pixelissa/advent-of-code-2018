@@ -1,4 +1,4 @@
-const input = require("fs").readFileSync("./input.txt").toString();
+//const input = require("fs").readFileSync("./input.txt").toString();
 const reactPolymer = require("./react-polymer.js");
 
 const polymerTwo = (input) => { 
@@ -24,6 +24,6 @@ const getUniqueUnits = (input) => {
     return new Set(input.toLowerCase());
 };
 
-console.log(polymerTwo(input));
+// console.log(polymerTwo(input));
 
-//module.exports = polymerTwo;
+module.exports = polymerTwo;

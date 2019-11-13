@@ -1,4 +1,4 @@
-const input = require("fs").readFileSync("./input.txt").toString();
+//const input = require("fs").readFileSync("./input.txt").toString();
 const reactPolymer = require("./react-polymer.js");
 
 const polymerOne = (input) => {
@@ -7,6 +7,6 @@ const polymerOne = (input) => {
     return reactPolymer(polymer).length; 
 };
 
-console.log(polymerOne(input));
+//console.log(polymerOne(input));
 
-//module.exports = polymerOne;
+module.exports = polymerOne;
