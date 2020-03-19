@@ -1,90 +1,107 @@
-const input = require("fs").readFileSync("./input.txt").toString();
+//const input = require("fs").readFileSync("./input.txt");
 
-// TODO - fix lets and consts
-// TODO - put code in for loops in separate function
-// TODO - check if y/x are within boundaries, in which case set count to 0 (to ignore it)
-// TODO - array of counts. keep track of count at each position of coordinates other than boundaries and return highest number
-
-const coordinatesOne = (input) => {   
-    let coordinates = parseCoordinates(input);
-    let grid = createGrid(coordinates);
-    
-    for (let y = 0; y < grid.length; y++) {
-        for (let x = 0; x < grid[y].length; x++) {
-            let shortestDistance = Number.POSITIVE_INFINITY;
-            let shortestDistanceIndex = -1;
-
-            for (let currentCoor = 0; currentCoor < coordinates.length; currentCoor++) {
-                let xCoor = coordinates[currentCoor][0];
-                let yCoor = coordinates[currentCoor][1];
-                let distance = (Math.abs(xCoor - x) + Math.abs(yCoor - y));
-
-                if (distance < shortestDistance) {
-                    shortestDistance = distance;
-                    shortestDistanceIndex = currentCoor;
-                }
-                else if (distance === shortestDistance) {
-                    shortestDistanceIndex = -1;
-                }
-
-                if (shortestDistance === 0) {
-                    break;
-                } 
-
-            }
-
-            grid[y][x] = shortestDistanceIndex;
-        }
-    }
-
-    console.log(grid);
-
-
+const coordinatesOne = (input) => {
+    const coordinates = parseCoordinates(input);
+    return getLargestArea(coordinates);
 };
 
 const parseCoordinates = (rawInput) => {
-    let parsedCoordinates = [];
+    const parsedCoordinates = [];
 
-    rawInput.split("\r\n").forEach((coor) => {
-        let splitCoor = coor.split(",");        
-        parsedCoordinates.push([parseInt(splitCoor[0]), parseInt(splitCoor[1])]);
+    rawInput.toString()
+        .split("\n")
+        .forEach((c) => {
+        let coordinateSet = c.split(",");
+        parsedCoordinates.push(
+            {
+                x: parseInt(coordinateSet[0]),
+                y: parseInt(coordinateSet[1])
+                
+            }
+        );        
     });
-    
+
     return parsedCoordinates;
 };
 
-const createGrid = (coordinates) => {
-    let grid = [];
-    let highestXandY = getHighestXandY(coordinates);
-    
-    for (let y = 0; y <= highestXandY[1]; y++) {
-        grid.push([]);
-        for (let x = 0; x <= highestXandY[0]; x++) {
-            grid[y].push(undefined);
+const getLargestArea = (coordinates) => {
+    const boundaries = getMinAndMaxCoordinates(coordinates);
+
+    for (let y = boundaries.minY; y <= boundaries.maxY; y++) {
+        for (let x = boundaries.minX; x <= boundaries.maxX; x++) {
+            let closestCoordinate = findClosestCoordinate(x, y, coordinates);
+            
+            if (closestCoordinate) {
+                incrementArea(closestCoordinate);
+                determineIfAreaIsInfinite(closestCoordinate, boundaries, x, y);
+            }
         }
     }
-
-    return grid;    
+    
+    let result = coordinates.filter(c => !c.isInfinite)
+        .sort((a, b) => b.area - a.area);    
+    
+    return result[0].area;        
 };
 
-const getHighestXandY = (coordinates) => {
-    let highestX = 0;
-    let highestY = 0;
-    
-    coordinates.forEach((coor) => {
-        let currentX = coor[0];
-        let currentY = coor[1];
+const getMinAndMaxCoordinates = (coordinates) => {
+    let minX = Number.POSITIVE_INFINITY;
+    let minY = Number.POSITIVE_INFINITY;
 
-        if (currentX > highestX) {
-            highestX = currentX;
+    let maxX = Number.NEGATIVE_INFINITY;
+    let maxY = Number.NEGATIVE_INFINITY;
+
+    coordinates.forEach((c) => {
+        minX = Math.min(minX, c.x);
+        minY = Math.min(minY, c.y);
+
+        maxX = Math.max(maxX, c.x);
+        maxY = Math.max(maxY, c.y);
+    });
+
+    return {
+        minX: minX,
+        minY: minY,
+        maxX: maxX,
+        maxY: maxY
+    }
+};
+
+const findClosestCoordinate = (x, y, coordinates) => {
+    let shortestDistance = Number.POSITIVE_INFINITY;
+    let closestCoordinate = null;
+
+    coordinates.forEach(currentCoordinate => {
+        let distance = getManhattanDistance(x, y, currentCoordinate);
+        
+        if (distance < shortestDistance) {
+            shortestDistance = distance;
+            closestCoordinate = currentCoordinate;
         }
-
-        if (currentY > highestY) {
-            highestY = currentY;
+        else if (distance === shortestDistance) {
+            closestCoordinate = null;
         }
     });
 
-    return [highestX, highestY];
-}
+    return closestCoordinate;
+};
 
-console.log(coordinatesOne(input));
+const incrementArea = (closestCoordinate) => {
+    !closestCoordinate.area ? closestCoordinate.area = 1 : closestCoordinate.area++;
+};
+
+const determineIfAreaIsInfinite = (coordinate, boundaries, x, y) => {
+    if (!coordinate.isInfinite) {
+        if (x === boundaries.minX || y === boundaries.minY || x === boundaries.maxX || y === boundaries.maxY) {
+            coordinate.isInfinite = true;
+        }                
+    }
+};
+
+const getManhattanDistance = (x, y, currentCoordinate) => {
+    return Math.abs(currentCoordinate.x - x) + Math.abs(currentCoordinate.y - y);
+};
+
+//console.log(coordinatesOne(input));
+
+module.exports = coordinatesOne;
