@@ -1,5 +1,5 @@
 const { parseCoordinates, getMinAndMaxCoordinates, getManhattanDistance } = require("./coordinates-helper-functions");
-//const input = require("fs").readFileSync("./input.txt");
+const input = require("fs").readFileSync("./input.txt");
 
 const coordinatesTwo = (input, maxTotalDistance) => {
     const coordinates = parseCoordinates(input);
@@ -12,8 +12,8 @@ const getRegionSize = (coordinates, maxTotalDistance) => {
 
     for (let y = boundaries.minY; y <= boundaries.maxY; y++) {
         for (let x = boundaries.minX; x <= boundaries.maxX; x++) {
-            let sumOfAllManhattanDistances = getSumofManhattanDistances(x, y, coordinates);
-            if (sumOfAllManhattanDistances < maxTotalDistance) {
+            let sumOfManhattanDistances = coordinates.reduce((acc, curr) => acc + getManhattanDistance(x, y, curr), 0);
+            if (sumOfManhattanDistances < maxTotalDistance) {
                 totalRegionSize++;
             }            
         }
@@ -22,17 +22,6 @@ const getRegionSize = (coordinates, maxTotalDistance) => {
     return totalRegionSize;            
 };
 
-const getSumofManhattanDistances = (x, y, coordinates) => {
-    let sumOfDistances = 0;
-
-    coordinates.forEach(currentCoordinate => {
-        let distance = getManhattanDistance(x, y, currentCoordinate);
-        sumOfDistances += distance;
-    });
-
-    return sumOfDistances;
-};
-
-//console.log(coordinatesTwo(input, 10000));
+console.log(coordinatesTwo(input, 10000));
 
 module.exports = coordinatesTwo;
