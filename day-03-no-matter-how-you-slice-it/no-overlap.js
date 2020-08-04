@@ -46,7 +46,7 @@ const parseClaim = (c) => {
         yOffset: parseInt(groups[3]),
         width: parseInt(groups[4]),
         height: parseInt(groups[5])
-    } 
+    }; 
 };
 
 //console.log(noOverlap(input));
