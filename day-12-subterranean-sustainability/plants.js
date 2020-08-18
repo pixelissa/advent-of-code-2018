@@ -32,12 +32,17 @@ const plants = (input, generations) => {
             }
         }
         
+        // first 2 indexes aren't processed so add padding
+        nextState.push(".", ".");
+
         for (let pot = 2; pot < previousState.length - 2; pot++) {
             let group = previousState.slice(pot - 2, pot + 3).join("");
             nextState.push(RULES.get(group) || ".");
         }
+        
+        // last 2 indexes aren't processed so add padding
+        nextState.push(".", ".");
 
-        offset -= 2;
         let newSum = getSum(nextState, offset);
         let newGrowth = newSum - (sum || 0);
 
@@ -49,7 +54,6 @@ const plants = (input, generations) => {
         sum = newSum;
         growth = newGrowth;
         previousState = nextState;
-        //console.log("Done gen: " + generation);
     }
     
     return sum;
