@@ -10,5 +10,8 @@
   "license": "ISC",
   "devDependencies": {
     "jest": "^25.5.4"
+  },
+  "dependencies": {
+    "node-notifier": "^9.0.0"
   }
 }
