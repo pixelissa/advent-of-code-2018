@@ -44,22 +44,22 @@ const parseInstructions = (input) => {
 const generateOpcodesMap = () => {
     const map = new Map();
 
-    map.set("addr", (registers, a, b) => {return registers[a] + registers[b]});
-    map.set("addi", (registers, a, b) => {return registers[a] + b});
-    map.set("mulr", (registers, a, b) => {return registers[a] * registers[b]});
-    map.set("muli", (registers, a, b) => {return registers[a] * b});
-    map.set("banr", (registers, a, b) => {return registers[a] & registers[b]});
-    map.set("bani", (registers, a, b) => {return registers[a] & b});
-    map.set("borr", (registers, a, b) => {return registers[a] | registers[b]});
-    map.set("bori", (registers, a, b) => {return registers[a] | b});
-    map.set("setr", (registers, a, b) => {return registers[a]});
-    map.set("seti", (registers, a, b) => {return a});
-    map.set("gtir", (registers, a, b) => {return a > registers[b] ? 1 : 0});
-    map.set("gtri", (registers, a, b) => {return registers[a] > b ? 1 : 0});
-    map.set("gtrr", (registers, a, b) => {return registers[a] > registers[b] ? 1 : 0});
-    map.set("eqir", (registers, a, b) => {return a === registers[b] ? 1 : 0});
-    map.set("eqri", (registers, a, b) => {return registers[a] === b ? 1 : 0});
-    map.set("eqrr", (registers, a, b) => {return registers[a] === registers[b] ? 1 : 0});
+    map.set("addr", (registers, a, b) => registers[a] + registers[b]);
+    map.set("addi", (registers, a, b) => registers[a] + b);
+    map.set("mulr", (registers, a, b) => registers[a] * registers[b]);
+    map.set("muli", (registers, a, b) => registers[a] * b);
+    map.set("banr", (registers, a, b) => registers[a] & registers[b]);
+    map.set("bani", (registers, a, b) => registers[a] & b);
+    map.set("borr", (registers, a, b) => registers[a] | registers[b]);
+    map.set("bori", (registers, a, b) => registers[a] | b);
+    map.set("setr", (registers, a, b) => registers[a]);
+    map.set("seti", (registers, a, b) => a);
+    map.set("gtir", (registers, a, b) => a > registers[b] ? 1 : 0);
+    map.set("gtri", (registers, a, b) => registers[a] > b ? 1 : 0);
+    map.set("gtrr", (registers, a, b) => registers[a] > registers[b] ? 1 : 0);
+    map.set("eqir", (registers, a, b) => a === registers[b] ? 1 : 0);
+    map.set("eqri", (registers, a, b) => registers[a] === b ? 1 : 0);
+    map.set("eqrr", (registers, a, b) => registers[a] === registers[b] ? 1 : 0);
     
     return map;
 };
