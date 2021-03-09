@@ -46,22 +46,22 @@ const parse = (input) => {
 const generateOpcodesMap = () => {
     const map = new Map();
 
-    map.set("addr", (s, a, b) => {return s.registersBefore[a] + s.registersBefore[b]});
-    map.set("addi", (s, a, b) => {return s.registersBefore[a] + b});
-    map.set("mulr", (s, a, b) => {return s.registersBefore[a] * s.registersBefore[b]});
-    map.set("muli", (s, a, b) => {return s.registersBefore[a] * b});
-    map.set("banr", (s, a, b) => {return s.registersBefore[a] & s.registersBefore[b]});
-    map.set("bani", (s, a, b) => {return s.registersBefore[a] & b});
-    map.set("borr", (s, a, b) => {return s.registersBefore[a] | s.registersBefore[b]});
-    map.set("bori", (s, a, b) => {return s.registersBefore[a] | b});
-    map.set("setr", (s, a, b) => {return s.registersBefore[a]});
-    map.set("seti", (s, a, b) => {return a});
-    map.set("gtir", (s, a, b) => {return a > s.registersBefore[b] ? 1 : 0});
-    map.set("gtri", (s, a, b) => {return s.registersBefore[a] > b ? 1 : 0});
-    map.set("gtrr", (s, a, b) => {return s.registersBefore[a] > s.registersBefore[b] ? 1 : 0});
-    map.set("eqir", (s, a, b) => {return a === s.registersBefore[b] ? 1 : 0});
-    map.set("eqri", (s, a, b) => {return s.registersBefore[a] === b ? 1 : 0});
-    map.set("eqrr", (s, a, b) => {return s.registersBefore[a] === s.registersBefore[b] ? 1 : 0});
+    map.set("addr", (s, a, b) => s.registersBefore[a] + s.registersBefore[b]);
+    map.set("addi", (s, a, b) => s.registersBefore[a] + b);
+    map.set("mulr", (s, a, b) => s.registersBefore[a] * s.registersBefore[b]);
+    map.set("muli", (s, a, b) => s.registersBefore[a] * b);
+    map.set("banr", (s, a, b) => s.registersBefore[a] & s.registersBefore[b]);
+    map.set("bani", (s, a, b) => s.registersBefore[a] & b);
+    map.set("borr", (s, a, b) => s.registersBefore[a] | s.registersBefore[b]);
+    map.set("bori", (s, a, b) => s.registersBefore[a] | b);
+    map.set("setr", (s, a, b) => s.registersBefore[a]);
+    map.set("seti", (s, a, b) => a);
+    map.set("gtir", (s, a, b) => a > s.registersBefore[b] ? 1 : 0);
+    map.set("gtri", (s, a, b) => s.registersBefore[a] > b ? 1 : 0);
+    map.set("gtrr", (s, a, b) => s.registersBefore[a] > s.registersBefore[b] ? 1 : 0);
+    map.set("eqir", (s, a, b) => a === s.registersBefore[b] ? 1 : 0);
+    map.set("eqri", (s, a, b) => s.registersBefore[a] === b ? 1 : 0);
+    map.set("eqrr", (s, a, b) => s.registersBefore[a] === s.registersBefore[b] ? 1 : 0);
     
     return map;
 };
