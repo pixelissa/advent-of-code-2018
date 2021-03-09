@@ -86,10 +86,18 @@ const processSpecialTrack = (track, cart) => {
         case "+":   cart.atIntersection();
                     break;
         
-        case "/":   cart.direction === "^" || cart.direction === "v" ? cart.turnRight() : cart.turnLeft();
+        case "/":   if (cart.direction === "^" || cart.direction === "v") {
+                        cart.turnRight();
+                    } else {
+                        cart.turnLeft();
+                    }
                     break;
 
-        case "\\":  cart.direction === "^" || cart.direction === "v" ? cart.turnLeft() : cart.turnRight();
+        case "\\":  if (cart.direction === "^" || cart.direction === "v") {
+                        cart.turnLeft();
+                    } else {
+                        cart.turnRight();
+                    }
                     break;
 
         default:    break;

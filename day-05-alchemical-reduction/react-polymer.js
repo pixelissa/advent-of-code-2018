@@ -23,8 +23,7 @@ const reactPolymer = (polymer) => {
 };
 
 const checkIfReactable = (unit1, unit2) => {
-    return unit1.toLowerCase() === unit2.toLowerCase()
-        && unit1 !== unit2;
+    return unit1.toLowerCase() === unit2.toLowerCase() && unit1 !== unit2;
 };
 
 module.exports = reactPolymer;

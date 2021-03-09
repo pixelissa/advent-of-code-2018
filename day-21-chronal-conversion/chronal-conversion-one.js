@@ -8,7 +8,7 @@ const chronalConversionOne = () => {
         switch (r2) {
             case 0: r3 = 123; break;
             case 1: r3 &= 456; break;
-            case 2: r3 === 72 ? r3 = 1 : r3 = 0; break;
+            case 2: r3 = r3 === 72 ? 1 : 0; break;
             case 3: r2 += r3; break;
             case 4: r2 = 0; break;
             case 5: r3 = 0; break;
@@ -19,14 +19,14 @@ const chronalConversionOne = () => {
             case 10: r3 &= 16777215; break;
             case 11: r3 *= 65899; break;
             case 12: r3 &= 16777215; break;
-            case 13: 256 > r1 ? r4 = 1 : r4 = 0; break;
+            case 13: r4 = 256 > r1 ? 1 : 0; break;
             case 14: r2 += r4; break;
             case 15: r2 += 1; break;
             case 16: r2 = 27; break;
             case 17: r4 = 0; break;
             case 18: r5 = r4 + 1; break;
             case 19: r5 *= 256; break;
-            case 20: r5 > r1 ? r5 = 1 : r5 = 0; break;
+            case 20: r5 = r5 > r1 ? 1 : 0; break;
             case 21: r2 += r5; break;
             case 22: r2 += 1; break;
             case 23: r2 = 25; break;

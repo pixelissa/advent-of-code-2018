@@ -1,5 +1,5 @@
 const { parseCoordinates, getMinAndMaxCoordinates, getManhattanDistance } = require("./coordinates-helper-functions");
-// const input = require("fs").readFileSync("./input.txt");
+const input = require("fs").readFileSync("./input.txt");
 
 const coordinatesOne = (input) => {
     const coordinates = parseCoordinates(input);
@@ -46,7 +46,7 @@ const findClosestCoordinate = (x, y, coordinates) => {
 };
 
 const incrementArea = (closestCoordinate) => {
-    !closestCoordinate.area ? closestCoordinate.area = 1 : closestCoordinate.area++;
+    closestCoordinate.area = !closestCoordinate.area ? 1 : closestCoordinate.area + 1;
 };
 
 const determineIfAreaIsInfinite = (coordinate, boundaries, x, y) => {
@@ -57,6 +57,6 @@ const determineIfAreaIsInfinite = (coordinate, boundaries, x, y) => {
     }
 };
 
-// console.log(coordinatesOne(input));
+console.log(coordinatesOne(input));
 
 module.exports = coordinatesOne;

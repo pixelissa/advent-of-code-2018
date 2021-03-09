@@ -79,7 +79,7 @@ const getBoundaries = (points) => {
         maxY: maxY,
         height: maxY - minY + 1,
         width: maxX - minX + 1
-    }
+    };
 };
 
 const updatePointPositions = (points) => {
@@ -99,7 +99,7 @@ const drawMessage = (data) => {
         return {
             x: p.x - data.boundaries.minX,
             y: p.y - data.boundaries.minY
-        }
+        };
     });
 
     let grid = [];

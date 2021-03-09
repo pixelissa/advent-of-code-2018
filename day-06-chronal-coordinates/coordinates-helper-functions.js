@@ -37,7 +37,7 @@ exports.getMinAndMaxCoordinates = (coordinates) => {
         minY: minY,
         maxX: maxX,
         maxY: maxY
-    }
+    };
 };
 
 exports.getManhattanDistance = (x, y, currentCoordinate) => {

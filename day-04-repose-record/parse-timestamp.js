@@ -5,7 +5,7 @@ const parseTimestamp = (t) => {
         action: groups[2].toLowerCase(),
         minute: parseInt(groups[1]),
         id: groups[3]        
-    }
+    };
 };
 
 module.exports = parseTimestamp;

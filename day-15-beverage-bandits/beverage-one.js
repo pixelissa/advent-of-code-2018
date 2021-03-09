@@ -68,7 +68,7 @@ const playRound = (gameMap, goblins, elves) => {
             continue;
         }
 
-        currentUnit.unitType === "goblin" ? enemies = elves : enemies = goblins;
+        enemies = currentUnit.unitType === "goblin" ? elves : goblins;
         
         if (!enemies.size) {
             return false;
@@ -93,7 +93,7 @@ const getTurnOrder = (goblins, elves) => {
 const sumOfRemainingHitPoints = (goblins, elves) => {
     let sumOfHitPoints = 0;
     let winners;
-    goblins.size ? winners = goblins : winners = elves;
+    winners = goblins.size ? goblins : elves;
     
     for (let unit of winners.values()) {
         sumOfHitPoints += unit.getHitPoints();       

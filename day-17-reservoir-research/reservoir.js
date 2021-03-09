@@ -69,7 +69,7 @@ const calculateClayBoundaries = (coordinates) => {
         minY: minY,
         maxX: maxX,        
         maxY: maxY
-    }
+    };
 };
 
 const generateGrid = (clayLocations, clayBoundaries, xOffset) => {

@@ -39,7 +39,7 @@ const WorkerPool = class {
         return {
             step: shortestStep,
             timeElapsed: shortestTime
-        }
+        };
     }
 };
 

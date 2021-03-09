@@ -4,6 +4,6 @@ const PathNode = class {
         this.y = y;
         this.parent = parent;
     }
-}
+};
 
 module.exports = PathNode;

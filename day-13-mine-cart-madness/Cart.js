@@ -5,7 +5,7 @@ const Cart = class {
         this.currentLocation = {
             x: location[0],
             y: location[1]
-        }
+        };
     }
 
     move() {

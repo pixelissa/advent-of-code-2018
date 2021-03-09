@@ -6,12 +6,12 @@ const X_VECTORS = [0, -1, 1, 0];
 
 const Unit = class {
     constructor(unitType, id, x, y, attackPower = 3) {
-        this.unitType = unitType,
-        this.id = id,
-        this.x = x,
-        this.y = y,
-        this.attackPower = attackPower,
-        this.hitPoints = 200       
+        this.unitType = unitType;
+        this.id = id;
+        this.x = x;
+        this.y = y;
+        this.attackPower = attackPower;
+        this.hitPoints = 200;
     }
 
     getHitPoints() {
